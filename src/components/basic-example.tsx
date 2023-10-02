@@ -1,7 +1,8 @@
 'use client'
+import useThree from '@/hooks/use-three'
+import { animate } from '@/utils'
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { animate } from '../utils'
 
 // Camera Settings
 const CAMERA_SETTINGS = {
@@ -11,22 +12,11 @@ const CAMERA_SETTINGS = {
   far: 100, // the far clipping plane
 }
 
-export default function Home() {
+export default function BasicExample() {
   // refs
   const ref = useRef<HTMLCanvasElement | null>(null)
   // states
-  const [scene, setScene] = useState<THREE.Scene>(new THREE.Scene())
-  const [camera, setCamera] = useState<THREE.PerspectiveCamera>(
-    new THREE.PerspectiveCamera(
-      CAMERA_SETTINGS.fov,
-      CAMERA_SETTINGS.aspect,
-      CAMERA_SETTINGS.near,
-      CAMERA_SETTINGS.far
-    )
-  )
-  const [renderer, setRenderer] = useState<THREE.WebGLRenderer>(
-    new THREE.WebGLRenderer()
-  )
+  const { scene, camera, renderer } = useThree()
 
   // create a cube & add it to the scene
   const createCube = (boxGeometryParams?: {
@@ -61,17 +51,12 @@ export default function Home() {
   }
 
   useEffect(() => {
-    // renderer settings
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-
     createScene()
 
     // camera settings
     camera.position.set(0, 0, 8)
     // add it to the dom
     ref.current?.appendChild(renderer.domElement)
-    animate(renderer, scene, camera)
   }, [])
 
   return <main className="" ref={ref}></main>
