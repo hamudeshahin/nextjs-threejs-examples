@@ -1,10 +1,12 @@
 import React from 'react'
 
 import BasicExample from '@/components/basic-example'
+import MultipleCubesExample from '@/components/multiple-cubs-example'
 // import AddRemoveCubesExample from '@/components/add-remove-cubes-with-name-objects'
 
 const EXAMPLES = {
   basic: BasicExample,
+  'multiple-cubs': MultipleCubesExample,
   // 'add-remove-cubes-with-name-objects': AddRemoveCubesExample,
   'not-found': () => <h2>Not Found!</h2>,
 }
