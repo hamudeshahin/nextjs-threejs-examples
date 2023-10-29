@@ -1,3 +1,6 @@
+import { ThreeElements, MeshBasicMaterialProps } from '@react-three/fiber'
+import { MeshBasicMaterial } from 'three'
+
 // animate function FPS
 export function animate(
   renderer: THREE.Renderer,
