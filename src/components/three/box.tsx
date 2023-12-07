@@ -1,9 +1,11 @@
 'use client'
 
-import { ThreeElements, useFrame } from '@react-three/fiber'
+import { MeshProps, ThreeElements } from '@react-three/fiber'
 import { FC, useRef } from 'react'
 import { useControls } from 'leva'
 import { Mesh } from 'three'
+import { MaterialProps, meshes } from './utils'
+
 
 const materials = {
   basic: (props: ThreeElements['meshBasicMaterial']) => (
@@ -14,16 +16,12 @@ const materials = {
   ),
 }
 
-type MaterialProps = {
-  basic: ThreeElements['meshBasicMaterial']
-  standard: ThreeElements['meshStandardMaterial']
-}
-
 export type BoxProps<T extends keyof typeof materials> = {
   cubeName: string
   materialType?: T
-  materialProps?: MaterialProps[T]
-} & Partial<Pick<ThreeElements, 'mesh' | 'boxGeometry'>>
+  materialProps?: MaterialProps[T],
+  mesh: MeshProps
+} & Partial<Pick<ThreeElements, 'boxGeometry'>>
 
 const Box: FC<BoxProps<keyof typeof materials>> = ({
   cubeName,
@@ -42,9 +40,6 @@ const Box: FC<BoxProps<keyof typeof materials>> = ({
     position: { x: _x || 0, y: _y || 0, z: _z || 0 },
   })
 
-  //   useFrame((state, delta, xrFrame) => {
-  //     meshRef.current!.position.set(x, y, z)
-  //   })
 
   // Assert materialProps to the appropriate type based on materialType
   const MeshMaterialElement = materials[materialType] as (
