@@ -13,6 +13,9 @@ const ExamplesPage = () => {
         <li>
           <Link href={'/examples/multiple-cubs'}>Multiple Cubes</Link>
         </li>
+        <li>
+          <Link href={'/examples/add-remove-cubes-with-name-objects'}>Add remove cubes with name objects</Link>
+        </li>
       </ul>
     </div>
   )

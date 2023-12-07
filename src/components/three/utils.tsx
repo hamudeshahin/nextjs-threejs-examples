@@ -6,3 +6,8 @@ export const meshes = {
       <meshBasicMaterial {...props} />
     ),
 }
+
+export type MaterialProps = {
+  basic: ThreeElements['meshBasicMaterial']
+  standard: ThreeElements['meshStandardMaterial']
+}
