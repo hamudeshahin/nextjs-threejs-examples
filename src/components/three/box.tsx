@@ -1,18 +1,15 @@
 'use client'
 
-import { ThreeElements, useFrame } from '@react-three/fiber'
+import { MeshProps, ThreeElements } from '@react-three/fiber'
 import { FC, useRef } from 'react'
 import { useControls } from 'leva'
 import { Mesh } from 'three'
+import { meshes } from './utils'
 
-const meshes = {
-  basic: (props: ThreeElements['meshBasicMaterial']) => (
-    <meshBasicMaterial {...props} />
-  ),
-}
 export type BoxProps = {
   meshType?: keyof typeof meshes
-} & Partial<Pick<ThreeElements, 'mesh' | 'boxGeometry'>>
+  mesh: MeshProps
+}  & Partial<Pick<ThreeElements, 'boxGeometry'>>
 
 const Box: FC<BoxProps> = ({ meshType = 'basic', mesh, boxGeometry }) => {
   const meshRef = useRef<Mesh | null>(null)
@@ -32,7 +29,7 @@ const Box: FC<BoxProps> = ({ meshType = 'basic', mesh, boxGeometry }) => {
   return (
     <mesh {...mesh} position={[x, y, z]} ref={meshRef}>
       <boxGeometry {...boxGeometry} />
-      <MeshMaterialElement color={'green'} />
+      <MeshMaterialElement color={'green'}  />
     </mesh>
   )
 }

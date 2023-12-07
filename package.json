@@ -11,7 +11,11 @@
   "dependencies": {
     "@react-three/drei": "^9.88.7",
     "@react-three/fiber": "^8.15.8",
+    "@tailwindcss/typography": "^0.5.10",
+    "@zyxui/button": "^0.4.1-beta",
+    "@zyxui/config": "^0.4.1-beta",
     "leva": "^0.9.35",
+    "lucide-react": "^0.294.0",
     "next": "^14.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
